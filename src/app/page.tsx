@@ -1,62 +1,75 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import dynamic from "next/dynamic";
+import { Box, Button, Typography } from "@mui/material";
+import { ToggleStatus, SwitchableSelect } from "../components/select/switchable-select";
+import { useState } from "react";
+import { useNotificationView } from "./use-notification-view";
+
+const NotificationView = dynamic(() => import("./notification-view"), {
+  ssr: false,
+});
 
 export default function Home() {
+  const logic = useNotificationView();
+  const [age, setAge] = useState<ToggleStatus>();
+
+  const handleChange = () => {
+    setAge((prev) => (prev === ToggleStatus.On ? ToggleStatus.Off : ToggleStatus.On));
+  };
   return (
-    <main className={styles.main}>
-      <div className={styles.center}>
-        <Image className={styles.logo} src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+    <Box
+      sx={{
+        p: "24px 45px",
+      }}
+    >
+      <Box
+        sx={{
+          mb: "24px",
+        }}
+      >
+        <Typography variant="h6" sx={{ fontWeight: 500, fontSize: "20px", lineHeight: "28px" }}>
+          Notification configuration
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ fontFamily: "Inter", fontWeight: 400, fontSize: "16px", lineHeight: "24px", color: "#6B6F76" }}
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+          Set up automatic notification
+        </Typography>
+      </Box>
+      <form onSubmit={logic.handleSubmit(logic.onSubmit)}>
+        <SwitchableSelect onToggle={handleChange} toggleStatus={age} title="Enable notification">
+          <NotificationView {...logic} />
+        </SwitchableSelect>
+        <Box
+          mt={"20px"}
+          sx={{
+            display: "flex",
+            justifyContent: "end",
+            gap: 2,
+          }}
         >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>Instantly deploy your Next.js site to a shareable URL with Vercel.</p>
-        </a>
-      </div>
-    </main>
+          <Button
+            type="submit"
+            variant="outlined"
+            sx={{
+              textTransform: "none",
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              textTransform: "none",
+            }}
+          >
+            Save changes
+          </Button>
+        </Box>
+      </form>
+    </Box>
   );
 }
