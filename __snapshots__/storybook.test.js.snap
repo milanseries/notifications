@@ -82,6 +82,23 @@ exports[`Storyshots Components/About Section Selected 1`] = `
 </div>
 `;
 
+exports[`Storyshots Components/Form/Section Default 1`] = `
+<div
+  className="MuiBox-root css-i3pbo"
+>
+  <h6
+    className="MuiTypography-root MuiTypography-h6 css-eeibr9-MuiTypography-root"
+  >
+    section--title
+  </h6>
+  <p
+    className="MuiTypography-root MuiTypography-body1 css-6zbbb1-MuiTypography-root"
+  >
+    section-subtitle 
+  </p>
+</div>
+`;
+
 exports[`Storyshots Components/Switchable Select Switch Off 1`] = `
 <div
   className="MuiBox-root css-fj7ja9"
@@ -123,7 +140,7 @@ exports[`Storyshots Components/Switchable Select Switch Off 1`] = `
         onChange={[Function]}
         required={false}
         tabIndex={-1}
-        value="off"
+        value={false}
       />
       <svg
         aria-hidden={true}
@@ -197,7 +214,7 @@ exports[`Storyshots Components/Switchable Select Switch On 1`] = `
           onChange={[Function]}
           required={false}
           tabIndex={-1}
-          value="on"
+          value={true}
         />
         <svg
           aria-hidden={true}

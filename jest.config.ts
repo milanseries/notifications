@@ -15,6 +15,7 @@ const config: Config = {
     "!**/*.d.ts",
     "!**/node_modules/**",
     "!**/*.config.{js,ts}",
+    "!**/*.types.{js,ts}",
   ],
   coveragePathIgnorePatterns: ["<rootDir>/.next", "<rootDir>/.storybook", "<rootDir>/coverage"],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],

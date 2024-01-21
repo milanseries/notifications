@@ -4,25 +4,19 @@ import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
-import { days } from "./use-notification-view";
-import { AboutSectionDetailViewPros } from "./notification-view.types";
+import { days } from "./use-notification-form";
+import { NotificationFormProps } from "./notification-form.types";
 import TimezoneSelect from "react-timezone-select";
+import { SectionHeader } from "@/components/form/section/section-header";
 
-const NotificationView = ({ orderDays, control, watch, fields, handleClick, register }: AboutSectionDetailViewPros) => {
+const NotificationForm = ({ orderDays, formMethods, fields, handleClick }: NotificationFormProps) => {
+  const { control, watch, register } = formMethods;
   return (
     <>
-      <Box
-        sx={{
-          mb: "24px",
-        }}
-      >
-        <Typography variant="h6" sx={{ fontWeight: 500, fontSize: "20px", lineHeight: "28px" }}>
-          Notification hours
-        </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "16px", lineHeight: "24px", color: "#6B6F76" }}>
-          Your automated notification will be sent within these hours
-        </Typography>
-      </Box>
+      <SectionHeader
+        title={"Notification hours"}
+        subtitle={"Your automated notification will be sent within these hours"}
+      />
       <Box mb={"60px"} p={"28px"} border={1} borderColor="#DFE1E4">
         <Typography variant="h6" sx={{ fontWeight: 500, fontSize: "14px", lineHeight: "22px", mb: 1 }}>
           Timezone
@@ -66,18 +60,18 @@ const NotificationView = ({ orderDays, control, watch, fields, handleClick, regi
           </Grid>
         </Grid>
         <Divider sx={{ m: "26px 0" }} />
-        {orderDays(fields).map((field, index) => (
-          <Box sx={{ mb: "20px" }} key={field.id}>
+        {orderDays(fields).map((fieldData, index) => (
+          <Box sx={{ mb: "20px" }} key={fieldData.id}>
             <Box sx={{ display: "fex", justifyContent: "space-between" }}>
               <Grid container alignItems="center">
                 <Grid item xs={12} md={2} display="flex" alignItems="center">
                   <Typography variant="h6" component="div" sx={{ fontSize: "16px" }}>
-                    <Box>{field.day}</Box>
+                    <Box>{fieldData.day}</Box>
                   </Typography>
                 </Grid>
                 <Grid item xs={12} md={10} display="flex" justifyContent="end">
-                  <Box>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <Box>
                       <Controller
                         control={control}
                         name={`daysOfWeek.${index}.start_time`}
@@ -94,6 +88,8 @@ const NotificationView = ({ orderDays, control, watch, fields, handleClick, regi
                           );
                         }}
                       />
+                    </Box>
+                    <Box>
                       <Controller
                         control={control}
                         name={`daysOfWeek.${index}.end_time`}
@@ -110,8 +106,8 @@ const NotificationView = ({ orderDays, control, watch, fields, handleClick, regi
                           );
                         }}
                       />
-                    </LocalizationProvider>
-                  </Box>
+                    </Box>
+                  </LocalizationProvider>
                 </Grid>
               </Grid>
             </Box>
@@ -119,18 +115,7 @@ const NotificationView = ({ orderDays, control, watch, fields, handleClick, regi
         ))}
       </Box>
 
-      <Box
-        sx={{
-          mb: "24px",
-        }}
-      >
-        <Typography variant="h6" sx={{ fontWeight: 500, fontSize: "20px", lineHeight: "28px" }}>
-          Notification message
-        </Typography>
-        <Typography variant="body1" sx={{ fontWeight: 400, fontSize: "16px", lineHeight: "24px", color: "#6B6F76" }}>
-          Customize your notification message
-        </Typography>
-      </Box>
+      <SectionHeader title={" Notification message "} subtitle={" Customize your notification message"} />
       <Box p={"24px"} border={1} borderColor="#DFE1E4">
         <Typography variant="h6" sx={{ fontWeight: 500, fontSize: "14px", lineHeight: "22px", mb: 1 }}>
           Message
@@ -147,4 +132,4 @@ const NotificationView = ({ orderDays, control, watch, fields, handleClick, regi
   );
 };
 
-export default NotificationView;
+export default NotificationForm;

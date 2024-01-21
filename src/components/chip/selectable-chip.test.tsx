@@ -1,13 +1,14 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { SelectableChip } from "./selectable-chip";
 
-describe("Page", () => {
-  const sampleData = "SampleData";
-  const onClickMock = jest.fn();
-  it("calls onClick function when clicked", () => {
-    render(<SelectableChip data={sampleData} onClick={onClickMock} />);
-    const chipElement = screen.getByRole("button");
-    fireEvent.click(chipElement);
-    expect(onClickMock).toHaveBeenCalledWith(sampleData);
+describe("Given SelectableChip", () => {
+  describe("When button is click", () => {
+    it("Then it should called with data", () => {
+      const mockData = "mockData";
+      const onClickMock = jest.fn();
+      render(<SelectableChip data={mockData} onClick={onClickMock} />);
+      screen.getByRole("button").click();
+      expect(onClickMock).toHaveBeenCalledWith(mockData);
+    });
   });
 });
