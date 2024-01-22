@@ -1,16 +1,21 @@
 import React, { ReactNode } from "react";
 import { Box, Typography, FormControl, Select, MenuItem } from "@mui/material";
 
+export enum ToggleStatus {
+  On = "on",
+  Off = "off",
+}
+
 export interface SwitchableSelectProps {
   title: string;
-  toggleStatus?: boolean;
+  toggleStatus?: ToggleStatus;
   onToggle?: () => void;
   children?: ReactNode;
 }
 
 export const SwitchableSelect: React.FC<SwitchableSelectProps> = ({
   title,
-  toggleStatus = true, // Default to true if not provided
+  toggleStatus = ToggleStatus.On,
   onToggle,
   children,
 }) => {
@@ -22,12 +27,12 @@ export const SwitchableSelect: React.FC<SwitchableSelectProps> = ({
         </Typography>
         <FormControl fullWidth>
           <Select id="toggle-status" value={toggleStatus} onChange={onToggle}>
-            <MenuItem value={true as any}>On</MenuItem>
-            <MenuItem value={false as any}>Off</MenuItem>
+            <MenuItem value={ToggleStatus.On}>On</MenuItem>
+            <MenuItem value={ToggleStatus.Off}>Off</MenuItem>
           </Select>
         </FormControl>
       </Box>
-      {toggleStatus && <Box sx={{ mt: "64px" }}>{children}</Box>}
+      {toggleStatus === ToggleStatus.On && <Box sx={{ mt: "64px" }}>{children}</Box>}
     </>
   );
 };

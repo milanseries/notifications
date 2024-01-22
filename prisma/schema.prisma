@@ -13,10 +13,12 @@ datasource db {
 
 model NotificationConfiguration {
   id                   Int                      @id @default(autoincrement())
-  timezone             String
-  notification_message String                   
+  timezone             String?
+  notification_message String?                   
   enabled              Boolean                  @default(true) // Added for notification configuration toggle
-  timeRanges           NotificationTimeRange[]  // Define the relationship
+  time_ranges          NotificationTimeRange[]  // Define the relationship
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime?
 }
 
 

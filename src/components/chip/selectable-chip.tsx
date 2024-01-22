@@ -23,9 +23,9 @@ export const SelectableChip = ({ data, isSelected, onClick, isDisabled, label, p
       variant="outlined"
       sx={{
         "&:hover": {
-          backgroundColor: isSelected ? "black !important" : "white",
+          backgroundColor: isSelected ? "black !important" : "#EDEDF0",
         },
-        backgroundColor: isSelected ? "black" : "white",
+        backgroundColor: isSelected ? "black" : "#EDEDF0",
         color: isSelected ? "white" : "black",
       }}
       {...props}

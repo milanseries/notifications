@@ -26,7 +26,7 @@ export const appTheme = createTheme({
         outlined: {
           borderRadius: "50%",
           margin: "6px",
-          border: "1px solid black",
+          border: "1px solid #EDEDF0",
         },
       },
     },

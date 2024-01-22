@@ -2,20 +2,14 @@ import prisma from "../../../config/prisma.config";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { timeRanges, ...rest } = await request.json(); // 👈
+  const { time_ranges = [], ...rest } = await request.json();
   try {
     const result = await prisma.notificationConfiguration.create({
       data: {
         ...rest,
-        timeRanges: {
-          createMany: {
-            ...timeRanges,
-          },
-        },
+        time_ranges: { createMany: { ...time_ranges } },
       },
-      include: {
-        timeRanges: true,
-      },
+      include: { time_ranges: true },
     });
     return NextResponse.json(result);
   } catch (error) {

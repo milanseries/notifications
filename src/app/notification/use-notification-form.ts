@@ -2,10 +2,12 @@
 
 import dayjs from "dayjs";
 import { useCallback, useState } from "react";
-import { NotificationFormData, UseNotificationFormFn } from "./notification-form.types";
+import { NotificationFormDataType, NotificationPayloadType, UseNotificationFormFn } from "./notification-form.types";
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { apiClient } from "../../config/axios.config";
+import { ToggleStatus } from "../../components/select/switchable-select";
+import { toast } from "react-toastify";
 
 export const nineAM = dayjs().set("hour", 9).startOf("hour");
 export const fivePM = dayjs().set("hour", 17).startOf("hour");
@@ -22,29 +24,41 @@ export const defaultDays = [
 export const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 export const useNotificationForm: UseNotificationFormFn = () => {
-  const [switchToggle, setSwitchToggle] = useState(true);
-  const { mutateAsync, isLoading } = useMutation(async (data: any) => await apiClient.post("/notification", data));
+  const [switchToggle, setSwitchToggle] = useState<ToggleStatus>(ToggleStatus.Off);
+  const { mutateAsync, isLoading } = useMutation(
+    async (data: NotificationPayloadType) => await apiClient.post("/notification", data),
+    {
+      onSuccess: () => {
+        toast.success("Successfully config your notification");
+      },
+      onError: () => {
+        toast.error("Please try again");
+      },
+    },
+  );
 
   const handleSwitchToggle = useCallback(() => {
-    setSwitchToggle((prev) => !prev);
+    setSwitchToggle((prev) => (prev === ToggleStatus.On ? ToggleStatus.Off : ToggleStatus.On));
   }, []);
 
-  const formMethods = useForm<NotificationFormData>({
+  const formMethods = useForm<NotificationFormDataType>({
     defaultValues: {
       daysOfWeek: defaultDays,
       timezone: defaultTimeZone,
     },
   });
 
+  const { getValues, setValue } = formMethods;
+
   const onSubmit = useCallback(
-    async (data: any) => {
-      const { timezone, message, daysOfWeek } = data.data;
+    async (data: NotificationFormDataType) => {
+      const { timezone, notification_message, daysOfWeek } = data;
       await mutateAsync({
         timezone,
-        notification_message: message,
+        notification_message,
         enabled: true,
-        timeRanges: {
-          data: daysOfWeek,
+        time_ranges: {
+          data: daysOfWeek.filter((d) => d.visible).map(({ visible, ...rest }) => rest),
         },
       });
     },
@@ -53,13 +67,14 @@ export const useNotificationForm: UseNotificationFormFn = () => {
 
   const handleClick = useCallback(
     (day: string) => {
-      const updatedDaysOfWeek = formMethods.getValues().daysOfWeek.map((d) => ({
+      const updatedDaysOfWeek = getValues().daysOfWeek.map((d) => ({
         ...d,
+        ...(d.day === day && d.visible ? { start_time: nineAM, end_time: fivePM } : {}),
         visible: d.day === day ? !d.visible : d.visible,
       }));
-      formMethods.setValue("daysOfWeek", updatedDaysOfWeek);
+      setValue("daysOfWeek", updatedDaysOfWeek);
     },
-    [formMethods],
+    [getValues, setValue],
   );
 
   return {
