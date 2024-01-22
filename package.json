@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
@@ -23,9 +23,13 @@
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.5",
+    "@mui/lab": "^5.0.0-alpha.161",
     "@mui/material": "^5.15.5",
     "@mui/material-nextjs": "^5.15.5",
     "@mui/x-date-pickers": "^6.19.0",
+    "@prisma/client": "^5.8.1",
+    "axios": "^1.6.5",
     "dayjs": "^1.11.10",
     "next": "^14.0.3",
     "react": "^18",
@@ -33,7 +37,8 @@
     "react-hook-form": "^7.49.3",
     "react-query": "^3.39.3",
     "react-select": "^5.8.0",
-    "react-timezone-select": "^3.2.0"
+    "react-timezone-select": "^3.2.0",
+    "react-toastify": "^10.0.4"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -69,6 +74,7 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.4",
+    "react-test-renderer": "^18.2.0",
     "semantic-release": "^23.0.0",
     "storybook": "^7.6.9",
     "ts-node": "^10.9.2",
