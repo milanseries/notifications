@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/Form/Section Default 1`] = `
+exports[`Storyshots Components/Section Default 1`] = `
 <div
   className="MuiBox-root css-i3pbo"
 >
@@ -19,7 +19,7 @@ exports[`Storyshots Components/Form/Section Default 1`] = `
 
 exports[`Storyshots Components/SelectableChip Default 1`] = `
 <div
-  className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault css-1nolq5n-MuiButtonBase-root-MuiChip-root"
+  className="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-xyqw2c-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -37,7 +37,7 @@ exports[`Storyshots Components/SelectableChip Default 1`] = `
   tabIndex={0}
 >
   <span
-    className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+    className="MuiChip-label MuiChip-labelMedium css-1jzq0dw-MuiChip-label"
   >
     M
   </span>
@@ -47,7 +47,7 @@ exports[`Storyshots Components/SelectableChip Default 1`] = `
 exports[`Storyshots Components/SelectableChip Disabled 1`] = `
 <div
   aria-disabled={true}
-  className="MuiButtonBase-root Mui-disabled MuiChip-root MuiChip-filled Mui-disabled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault css-1nolq5n-MuiButtonBase-root-MuiChip-root"
+  className="MuiButtonBase-root Mui-disabled MuiChip-root MuiChip-outlined Mui-disabled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-xyqw2c-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -65,7 +65,7 @@ exports[`Storyshots Components/SelectableChip Disabled 1`] = `
   tabIndex={-1}
 >
   <span
-    className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+    className="MuiChip-label MuiChip-labelMedium css-1jzq0dw-MuiChip-label"
   >
     M
   </span>
@@ -74,7 +74,7 @@ exports[`Storyshots Components/SelectableChip Disabled 1`] = `
 
 exports[`Storyshots Components/SelectableChip Selected 1`] = `
 <div
-  className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault css-1hq5hd1-MuiButtonBase-root-MuiChip-root"
+  className="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1v7mjdl-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -92,7 +92,7 @@ exports[`Storyshots Components/SelectableChip Selected 1`] = `
   tabIndex={0}
 >
   <span
-    className="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+    className="MuiChip-label MuiChip-labelMedium css-1jzq0dw-MuiChip-label"
   >
     M
   </span>

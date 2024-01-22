@@ -1,5 +1,5 @@
+import prisma from "../../../config/prisma.config";
 import { NextRequest, NextResponse } from "next/server";
-import prisma from "../../../../prisma";
 
 export async function POST(request: NextRequest) {
   const { timeRanges, ...rest } = await request.json(); // 👈

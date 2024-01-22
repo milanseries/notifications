@@ -1,15 +1,23 @@
 "use client";
 
 import dayjs from "dayjs";
-import { useCallback, useMemo, useState } from "react";
-import { DaysOfWeekArray, NotificationFormData, UseNotificationFormFn } from "./notification-form.types";
-import { useForm, useFieldArray } from "react-hook-form";
+import { useCallback, useState } from "react";
+import { NotificationFormData, UseNotificationFormFn } from "./notification-form.types";
+import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
 import { apiClient } from "../../config/axios.config";
 
-export const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const nineAM = dayjs().set("hour", 9).startOf("hour");
 export const fivePM = dayjs().set("hour", 17).startOf("hour");
+export const defaultDays = [
+  { day: "Sunday", start_time: nineAM, end_time: fivePM, visible: false },
+  { day: "Monday", start_time: nineAM, end_time: fivePM, visible: true },
+  { day: "Tuesday", start_time: nineAM, end_time: fivePM, visible: true },
+  { day: "Wednesday", start_time: nineAM, end_time: fivePM, visible: true },
+  { day: "Thursday", start_time: nineAM, end_time: fivePM, visible: true },
+  { day: "Friday", start_time: nineAM, end_time: fivePM, visible: true },
+  { day: "Saturday", start_time: nineAM, end_time: fivePM, visible: false },
+];
 
 export const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -23,29 +31,20 @@ export const useNotificationForm: UseNotificationFormFn = () => {
 
   const formMethods = useForm<NotificationFormData>({
     defaultValues: {
-      daysOfWeek: [
-        { day: "Monday", start_time: nineAM, end_time: fivePM },
-        { day: "Tuesday", start_time: nineAM, end_time: fivePM },
-        { day: "Wednesday", start_time: nineAM, end_time: fivePM },
-        { day: "Thursday", start_time: nineAM, end_time: fivePM },
-      ],
+      daysOfWeek: defaultDays,
       timezone: defaultTimeZone,
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
-    name: "daysOfWeek",
-    control: formMethods.control,
-  });
-
   const onSubmit = useCallback(
-    async (data: NotificationFormData) => {
+    async (data: any) => {
+      const { timezone, message, daysOfWeek } = data.data;
       await mutateAsync({
-        timezone: data.timezone,
-        notification_message: data.message,
+        timezone,
+        notification_message: message,
         enabled: true,
         timeRanges: {
-          data: data.daysOfWeek,
+          data: daysOfWeek,
         },
       });
     },
@@ -54,26 +53,16 @@ export const useNotificationForm: UseNotificationFormFn = () => {
 
   const handleClick = useCallback(
     (day: string) => {
-      const existingFieldIndex = fields.findIndex((field) => field.day === day);
-      if (existingFieldIndex !== -1) {
-        remove(existingFieldIndex);
-      } else {
-        append({ day, start_time: undefined, end_time: undefined });
-      }
+      const updatedDaysOfWeek = formMethods.getValues().daysOfWeek.map((d) => ({
+        ...d,
+        visible: d.day === day ? !d.visible : d.visible,
+      }));
+      formMethods.setValue("daysOfWeek", updatedDaysOfWeek);
     },
-    [fields, remove, append],
-  );
-
-  const orderDays = useMemo(
-    () => (fields: DaysOfWeekArray) => {
-      return [...fields].sort((a, b) => days.indexOf(a.day) - days.indexOf(b.day));
-    },
-    [],
+    [formMethods],
   );
 
   return {
-    orderDays,
-    fields,
     handleClick,
     onSubmit,
     formMethods,

@@ -5,6 +5,7 @@ export type DaysOfWeek = {
   day: string;
   start_time?: Dayjs | string;
   end_time?: Dayjs | string;
+  visible: boolean;
 };
 
 export type DaysOfWeekArray = FieldArrayWithId<NotificationFormData, "daysOfWeek", "id">[];
@@ -17,13 +18,12 @@ export type NotificationFormData = {
 };
 
 export type UseNotificationFormFn = () => {
-  orderDays: (args: DaysOfWeekArray) => DaysOfWeekArray;
   formMethods: UseFormReturn<NotificationFormData>;
-  fields: DaysOfWeekArray;
+  fields?: DaysOfWeekArray;
   handleClick: (arg: string) => void;
   switchToggle: boolean;
   handleSwitchToggle: () => void;
-  onSubmit: (args: any) => Promise<void>;
+  onSubmit: (data: any) => Promise<void>;
   isLoading?: boolean;
 };
 

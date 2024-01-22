@@ -1,16 +1,17 @@
 import { SelectableChip } from "../../components/chip/selectable-chip";
 import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
-import { days } from "./use-notification-form";
+import { defaultDays } from "./use-notification-form";
 import { NotificationFormProps } from "./notification-form.types";
 import TimezoneSelect from "react-timezone-select";
-import { SectionHeader } from "../../components/form/section/section-header";
+import { SectionHeader } from "../../components/section/section-header";
 
-const NotificationForm = ({ orderDays, formMethods, fields, handleClick }: NotificationFormProps) => {
-  const { control, watch, register } = formMethods;
+const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) => {
+  const { control, register, watch } = formMethods;
   return (
     <>
       <SectionHeader
@@ -47,72 +48,87 @@ const NotificationForm = ({ orderDays, formMethods, fields, handleClick }: Notif
           </Grid>
           <Grid item xs={12} md={10} display="flex" justifyContent="end">
             <Box sx={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", alignItems: "center" }}>
-              {days.map((day) => (
-                <SelectableChip
-                  key={day}
-                  isSelected={fields.some((field) => field.day === day)}
-                  label={day?.toString().charAt(0)}
-                  data={day}
-                  onClick={handleClick}
-                />
-              ))}
+              <>
+                {watch("daysOfWeek").map((day) => {
+                  return (
+                    <SelectableChip
+                      key={day.day}
+                      isSelected={day.visible}
+                      label={day.day.charAt(0)}
+                      data={day.day}
+                      onClick={handleClick}
+                    />
+                  );
+                })}
+              </>
             </Box>
           </Grid>
         </Grid>
         <Divider sx={{ m: "26px 0" }} />
-        {orderDays(fields).map((fieldData, index) => (
-          <Box sx={{ mb: "20px" }} key={fieldData.id}>
-            <Box sx={{ display: "fex", justifyContent: "space-between" }}>
-              <Grid container alignItems="center">
-                <Grid item xs={12} md={2} display="flex" alignItems="center">
-                  <Typography variant="h6" component="div" sx={{ fontSize: "16px" }}>
-                    <Box>{fieldData.day}</Box>
-                  </Typography>
-                </Grid>
-                <Grid item xs={12} md={10} display="flex" justifyContent="end">
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <Box>
-                      <Controller
-                        control={control}
-                        name={`daysOfWeek.${index}.start_time`}
-                        rules={{ required: true }}
-                        render={({ field }) => {
-                          return (
-                            <TimePicker
-                              value={field.value || null}
-                              maxTime={dayjs(watch(`daysOfWeek.${index}.end_time`)).add(30, "minutes")}
-                              onChange={(date) => {
-                                field.onChange(date);
-                              }}
-                            />
-                          );
-                        }}
-                      />
-                    </Box>
-                    <Box>
-                      <Controller
-                        control={control}
-                        name={`daysOfWeek.${index}.end_time`}
-                        rules={{ required: true }}
-                        render={({ field }) => {
-                          return (
-                            <TimePicker
-                              minTime={dayjs(watch(`daysOfWeek.${index}.start_time`)).add(30, "minutes")}
-                              value={field?.value || null}
-                              onChange={(date) => {
-                                field.onChange(date);
-                              }}
-                            />
-                          );
-                        }}
-                      />
-                    </Box>
-                  </LocalizationProvider>
-                </Grid>
-              </Grid>
-            </Box>
-          </Box>
-        ))}
+        {defaultDays.map((fieldData, index) => {
+          const dayOfWeek = watch("daysOfWeek").find((day) => day.day === fieldData.day);
+          return (
+            dayOfWeek?.visible && (
+              <Box sx={{ mb: "20px" }} key={fieldData.day}>
+                <Box sx={{ display: "fex", justifyContent: "space-between" }}>
+                  <Grid container alignItems="center">
+                    <Grid item xs={12} md={2} display="flex" alignItems="center">
+                      <Typography variant="h6" component="div" sx={{ fontSize: "16px" }}>
+                        <Box>{fieldData.day}</Box>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} md={10} display="flex" justifyContent="end" flexWrap="nowrap">
+                      <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <Box>
+                          <Controller
+                            control={control}
+                            name={`daysOfWeek.${index}.start_time`}
+                            rules={{ required: true }}
+                            render={({ field }) => {
+                              return (
+                                <TimePicker
+                                  value={field.value || null}
+                                  maxTime={dayjs(dayOfWeek?.end_time).add(30, "minutes")}
+                                  onChange={(date) => {
+                                    field.onChange(date);
+                                  }}
+                                  slots={{
+                                    openPickerIcon: ExpandMoreIcon,
+                                  }}
+                                />
+                              );
+                            }}
+                          />
+                        </Box>
+                        <Box>
+                          <Controller
+                            control={control}
+                            name={`daysOfWeek.${index}.end_time`}
+                            rules={{ required: true }}
+                            render={({ field }) => {
+                              return (
+                                <TimePicker
+                                  minTime={dayjs(dayOfWeek?.start_time).add(30, "minutes")}
+                                  value={field?.value || null}
+                                  onChange={(date) => {
+                                    field.onChange(date);
+                                  }}
+                                  slots={{
+                                    openPickerIcon: ExpandMoreIcon,
+                                  }}
+                                />
+                              );
+                            }}
+                          />
+                        </Box>
+                      </LocalizationProvider>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Box>
+            )
+          );
+        })}
       </Box>
 
       <SectionHeader title={" Notification message "} subtitle={" Customize your notification message"} />
