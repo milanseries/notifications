@@ -1,6 +1,4 @@
-import { appTheme } from "@/config/theme-override.config";
 import Providers from "@/utils/provider";
-import { ThemeProvider } from "@mui/material";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -18,9 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={inter.className}>
       <body>
         <main>
-          <ThemeProvider theme={appTheme}>
-            <Providers>{children}</Providers>
-          </ThemeProvider>
+          <Providers>{children}</Providers>
         </main>
       </body>
     </html>

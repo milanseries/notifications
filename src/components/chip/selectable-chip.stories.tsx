@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { SelectableChip } from "./selectable-chip";
 
 const meta: Meta<typeof SelectableChip> = {
-  title: "Components/About Section",
+  title: "Components/SelectableChip",
   component: SelectableChip,
 };
 

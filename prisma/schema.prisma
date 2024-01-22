@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model NotificationConfiguration {
+  id                   Int                      @id @default(autoincrement())
+  timezone             String
+  notification_message String                   
+  enabled              Boolean                  @default(true) // Added for notification configuration toggle
+  timeRanges           NotificationTimeRange[]  // Define the relationship
+}
+
+
+model NotificationTimeRange {
+  id         Int       @id @default(autoincrement())
+  config_id  Int
+  day        String
+  start_time DateTime @db.Timestamptz 
+  end_time   DateTime @db.Timestamptz
+  configuration NotificationConfiguration @relation(fields: [config_id], references: [id]) // Define the relationship
+
+  @@index([config_id])
+}

@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import dayjs from "dayjs";
 import { useCallback, useMemo, useState } from "react";
 import { DaysOfWeekArray, NotificationFormData, UseNotificationFormFn } from "./notification-form.types";
 import { useForm, useFieldArray } from "react-hook-form";
+import { useMutation } from "react-query";
+import { apiClient } from "../../config/axios.config";
 
 export const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 export const nineAM = dayjs().set("hour", 9).startOf("hour");
@@ -14,6 +15,7 @@ export const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 export const useNotificationForm: UseNotificationFormFn = () => {
   const [switchToggle, setSwitchToggle] = useState(true);
+  const { mutateAsync, isLoading } = useMutation(async (data: any) => await apiClient.post("/notification", data));
 
   const handleSwitchToggle = useCallback(() => {
     setSwitchToggle((prev) => !prev);
@@ -36,9 +38,19 @@ export const useNotificationForm: UseNotificationFormFn = () => {
     control: formMethods.control,
   });
 
-  const onSubmit = async (data: any) => {
-    alert(JSON.stringify(data)); // api handle
-  };
+  const onSubmit = useCallback(
+    async (data: NotificationFormData) => {
+      await mutateAsync({
+        timezone: data.timezone,
+        notification_message: data.message,
+        enabled: true,
+        timeRanges: {
+          data: data.daysOfWeek,
+        },
+      });
+    },
+    [mutateAsync],
+  );
 
   const handleClick = useCallback(
     (day: string) => {
@@ -67,5 +79,6 @@ export const useNotificationForm: UseNotificationFormFn = () => {
     formMethods,
     switchToggle,
     handleSwitchToggle,
+    isLoading,
   };
 };

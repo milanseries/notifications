@@ -24,6 +24,7 @@ export type UseNotificationFormFn = () => {
   switchToggle: boolean;
   handleSwitchToggle: () => void;
   onSubmit: (args: any) => Promise<void>;
+  isLoading?: boolean;
 };
 
 export type NotificationFormProps = ReturnType<UseNotificationFormFn>;

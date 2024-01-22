@@ -1,4 +1,4 @@
-import { SelectableChip } from "@/components/chip/selectable-chip";
+import { SelectableChip } from "../../components/chip/selectable-chip";
 import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -7,7 +7,7 @@ import { Controller } from "react-hook-form";
 import { days } from "./use-notification-form";
 import { NotificationFormProps } from "./notification-form.types";
 import TimezoneSelect from "react-timezone-select";
-import { SectionHeader } from "@/components/form/section/section-header";
+import { SectionHeader } from "../../components/form/section/section-header";
 
 const NotificationForm = ({ orderDays, formMethods, fields, handleClick }: NotificationFormProps) => {
   const { control, watch, register } = formMethods;

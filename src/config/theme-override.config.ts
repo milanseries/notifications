@@ -21,5 +21,14 @@ export const appTheme = createTheme({
         },
       },
     },
+    MuiChip: {
+      styleOverrides: {
+        outlined: {
+          borderRadius: "50%",
+          margin: "6px",
+          border: "1px solid black",
+        },
+      },
+    },
   },
 });

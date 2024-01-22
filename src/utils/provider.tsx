@@ -3,16 +3,20 @@ import { useState } from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 
 import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
+import { appTheme } from "@/config/theme-override.config";
+import { ThemeProvider } from "@emotion/react";
 
 function Providers({ children }: React.PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Hydrate>
-        <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
-      </Hydrate>
-    </QueryClientProvider>
+    <ThemeProvider theme={appTheme}>
+      <QueryClientProvider client={queryClient}>
+        <Hydrate>
+          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        </Hydrate>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

@@ -1,6 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Storyshots Components/About Section Default 1`] = `
+exports[`Storyshots Components/Form/Section Default 1`] = `
+<div
+  className="MuiBox-root css-i3pbo"
+>
+  <h6
+    className="MuiTypography-root MuiTypography-h6 css-eeibr9-MuiTypography-root"
+  >
+    section--title
+  </h6>
+  <p
+    className="MuiTypography-root MuiTypography-body1 css-6zbbb1-MuiTypography-root"
+  >
+    section-subtitle 
+  </p>
+</div>
+`;
+
+exports[`Storyshots Components/SelectableChip Default 1`] = `
 <div
   className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault css-1nolq5n-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
@@ -27,7 +44,7 @@ exports[`Storyshots Components/About Section Default 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components/About Section Disabled 1`] = `
+exports[`Storyshots Components/SelectableChip Disabled 1`] = `
 <div
   aria-disabled={true}
   className="MuiButtonBase-root Mui-disabled MuiChip-root MuiChip-filled Mui-disabled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault css-1nolq5n-MuiButtonBase-root-MuiChip-root"
@@ -55,7 +72,7 @@ exports[`Storyshots Components/About Section Disabled 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components/About Section Selected 1`] = `
+exports[`Storyshots Components/SelectableChip Selected 1`] = `
 <div
   className="MuiButtonBase-root MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-filledDefault css-1hq5hd1-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
@@ -82,23 +99,6 @@ exports[`Storyshots Components/About Section Selected 1`] = `
 </div>
 `;
 
-exports[`Storyshots Components/Form/Section Default 1`] = `
-<div
-  className="MuiBox-root css-i3pbo"
->
-  <h6
-    className="MuiTypography-root MuiTypography-h6 css-eeibr9-MuiTypography-root"
-  >
-    section--title
-  </h6>
-  <p
-    className="MuiTypography-root MuiTypography-body1 css-6zbbb1-MuiTypography-root"
-  >
-    section-subtitle 
-  </p>
-</div>
-`;
-
 exports[`Storyshots Components/Switchable Select Switch Off 1`] = `
 <div
   className="MuiBox-root css-fj7ja9"
@@ -116,7 +116,7 @@ exports[`Storyshots Components/Switchable Select Switch Off 1`] = `
       onClick={[Function]}
     >
       <div
-        aria-controls=":r0:"
+        aria-controls=":r2:"
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-labelledby="toggle-status"
@@ -190,7 +190,7 @@ exports[`Storyshots Components/Switchable Select Switch On 1`] = `
         onClick={[Function]}
       >
         <div
-          aria-controls=":r1:"
+          aria-controls=":r3:"
           aria-expanded="false"
           aria-haspopup="listbox"
           aria-labelledby="toggle-status"
@@ -252,4 +252,189 @@ exports[`Storyshots Components/Switchable Select Switch On 1`] = `
     </div>
   </div>,
 ]
+`;
+
+exports[`Storyshots Page/Home Default 1`] = `
+<div
+  className="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-17qo193-MuiGrid-root"
+>
+  <div
+    className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1equabv-MuiGrid-root"
+  >
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-co5uzt-MuiTypography-root"
+    >
+      Set your automatic notification
+    </h2>
+    <a
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+      href="/notification"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+    >
+      Configure it now
+    </a>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Page/Notification Default 1`] = `
+<div>
+  <div
+    className="MuiBox-root css-4fxyc7"
+  >
+    <div
+      className="MuiBox-root css-i3pbo"
+    >
+      <h6
+        className="MuiTypography-root MuiTypography-h6 css-eeibr9-MuiTypography-root"
+      >
+        Notification configuration
+      </h6>
+      <p
+        className="MuiTypography-root MuiTypography-body1 css-6zbbb1-MuiTypography-root"
+      >
+        Set up automatic notification
+      </p>
+    </div>
+    <form
+      method="post"
+      noValidate={false}
+      onSubmit={[Function]}
+    >
+      <div
+        className="MuiBox-root css-fj7ja9"
+      >
+        <h6
+          className="MuiTypography-root MuiTypography-h6 css-ct0mfe-MuiTypography-root"
+        >
+          Enable notification
+        </h6>
+        <div
+          className="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+        >
+          <div
+            className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+            onClick={[Function]}
+          >
+            <div
+              aria-controls=":r0:"
+              aria-expanded="false"
+              aria-haspopup="listbox"
+              aria-labelledby="toggle-status"
+              className="MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+              id="toggle-status"
+              onBlur={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onMouseDown={[Function]}
+              role="combobox"
+              tabIndex={0}
+            >
+              On
+            </div>
+            <input
+              aria-hidden={true}
+              aria-invalid={false}
+              className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+              disabled={false}
+              onAnimationStart={[Function]}
+              onChange={[Function]}
+              required={false}
+              tabIndex={-1}
+              value={true}
+            />
+            <svg
+              aria-hidden={true}
+              className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+              data-testid="ArrowDropDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7 10l5 5 5-5z"
+              />
+            </svg>
+            <fieldset
+              aria-hidden={true}
+              className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            >
+              <legend
+                className="css-ihdtdm"
+              >
+                <span
+                  className="notranslate"
+                >
+                  ​
+                </span>
+              </legend>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiBox-root css-h8m1q6"
+      />
+      <div
+        className="MuiBox-root css-13rknje"
+      >
+        <a
+          className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+          href="/"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+        >
+          Cancel
+        </a>
+        <button
+          className="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1twrztz-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+          disabled={false}
+          id=":r1:"
+          onBlur={[Function]}
+          onContextMenu={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="submit"
+        >
+          Save changes
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 `;
