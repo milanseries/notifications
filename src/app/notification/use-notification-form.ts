@@ -8,6 +8,7 @@ import { useMutation } from "react-query";
 import { apiClient } from "../../config/axios.config";
 import { ToggleStatus } from "../../components/select/switchable-select";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export const nineAM = dayjs().set("hour", 9).startOf("hour");
 export const fivePM = dayjs().set("hour", 17).startOf("hour");
@@ -24,22 +25,28 @@ export const defaultDays = [
 export const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 export const useNotificationForm: UseNotificationFormFn = () => {
+  const router = useRouter();
+
   const [switchToggle, setSwitchToggle] = useState<ToggleStatus>(ToggleStatus.Off);
   const { mutateAsync, isLoading } = useMutation(
     async (data: NotificationPayloadType) => await apiClient.post("/notification", data),
     {
       onSuccess: () => {
-        toast.success("Successfully config your notification");
+        toast.success("Notification configured successfully!", {
+          onClose: () => {
+            router.push("/");
+          },
+        });
       },
       onError: () => {
-        toast.error("Please try again");
+        toast.error("An error occurred. Please try again.");
       },
     },
   );
 
-  const handleSwitchToggle = useCallback(() => {
+  const handleSwitchToggle = () => {
     setSwitchToggle((prev) => (prev === ToggleStatus.On ? ToggleStatus.Off : ToggleStatus.On));
-  }, []);
+  };
 
   const formMethods = useForm<NotificationFormDataType>({
     defaultValues: {
@@ -52,6 +59,7 @@ export const useNotificationForm: UseNotificationFormFn = () => {
 
   const onSubmit = useCallback(
     async (data: NotificationFormDataType) => {
+      if (switchToggle === ToggleStatus.Off) return;
       const { timezone, notification_message, daysOfWeek } = data;
       await mutateAsync({
         timezone,
@@ -62,7 +70,7 @@ export const useNotificationForm: UseNotificationFormFn = () => {
         },
       });
     },
-    [mutateAsync],
+    [mutateAsync, switchToggle],
   );
 
   const handleClick = useCallback(

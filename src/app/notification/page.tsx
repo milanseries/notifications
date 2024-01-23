@@ -33,7 +33,7 @@ const Notification = () => {
             <Button href="/" LinkComponent={Link} variant="outlined">
               Cancel
             </Button>
-            <LoadingButton type="submit" loading={isLoading} disabled={!isValid} variant="contained">
+            <LoadingButton type="submit" loading={isLoading} variant="contained">
               Save changes
             </LoadingButton>
           </Box>

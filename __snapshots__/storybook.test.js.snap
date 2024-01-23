@@ -4,16 +4,16 @@ exports[`Storyshots Components/Section Default 1`] = `
 <div
   className="MuiBox-root css-i3pbo"
 >
-  <h6
-    className="MuiTypography-root MuiTypography-h6 css-et6f7t-MuiTypography-root"
+  <h2
+    className="MuiTypography-root MuiTypography-h2 css-ure4m5-MuiTypography-root"
   >
     section--title
-  </h6>
-  <p
-    className="MuiTypography-root MuiTypography-body1 css-1q8hzmb-MuiTypography-root"
+  </h2>
+  <h6
+    className="MuiTypography-root MuiTypography-subtitle1 css-i3hce2-MuiTypography-root"
   >
     section-subtitle 
-  </p>
+  </h6>
 </div>
 `;
 
@@ -298,16 +298,16 @@ exports[`Storyshots Page/Notification Default 1`] = `
   <div
     className="MuiBox-root css-i3pbo"
   >
-    <h6
-      className="MuiTypography-root MuiTypography-h6 css-et6f7t-MuiTypography-root"
+    <h2
+      className="MuiTypography-root MuiTypography-h2 css-ure4m5-MuiTypography-root"
     >
       Notification configuration
-    </h6>
-    <p
-      className="MuiTypography-root MuiTypography-body1 css-1q8hzmb-MuiTypography-root"
+    </h2>
+    <h6
+      className="MuiTypography-root MuiTypography-subtitle1 css-i3hce2-MuiTypography-root"
     >
       Set up automatic notification
-    </p>
+    </h6>
   </div>
   <form
     id="form"
@@ -408,8 +408,8 @@ exports[`Storyshots Page/Notification Default 1`] = `
         Cancel
       </a>
       <button
-        className="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1twrztz-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
-        disabled={true}
+        className="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1twrztz-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+        disabled={false}
         id=":r1:"
         onBlur={[Function]}
         onContextMenu={[Function]}
@@ -423,7 +423,7 @@ exports[`Storyshots Page/Notification Default 1`] = `
         onTouchEnd={[Function]}
         onTouchMove={[Function]}
         onTouchStart={[Function]}
-        tabIndex={-1}
+        tabIndex={0}
         type="submit"
       >
         Save changes

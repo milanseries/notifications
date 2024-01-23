@@ -3,15 +3,21 @@ import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import TimezoneSelect, { allTimezones } from "react-timezone-select";
 import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
 import { defaultDays } from "./use-notification-form";
 import { NotificationFormProps } from "./notification-form.types";
-import TimezoneSelect from "react-timezone-select";
 import { SectionHeader } from "../../components/section/section-header";
 
 const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) => {
-  const { control, register, watch } = formMethods;
+  const {
+    control,
+    register,
+    watch,
+    formState: { errors },
+  } = formMethods;
+  console.log("error", allTimezones);
   return (
     <>
       <SectionHeader
@@ -30,7 +36,8 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
             return (
               <TimezoneSelect
                 instanceId={"timezone-select"}
-                id="hello"
+                id="timezone-select"
+                labelStyle="altName"
                 value={field?.value || ""}
                 onChange={(event: any) => {
                   field.onChange(event?.value);
@@ -42,13 +49,13 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
         <Divider sx={{ m: "26px 0" }} />
         <Grid container alignItems="center">
           <Grid item xs={12} md={2} display="flex" alignItems="center">
-            <Typography variant="subtitle1" component="div" sx={{ fontSize: "16px" }}>
+            <Typography variant="subtitle1" sx={{ fontSize: "16px" }}>
               Select days
             </Typography>
           </Grid>
           <Grid item xs={12} md={10} display="flex" justifyContent="end">
             <Box sx={{ display: "flex", justifyContent: "flex-end", flexWrap: "wrap", alignItems: "center" }}>
-              {watch("daysOfWeek").map((dayOfWeek) => {
+              {watch("daysOfWeek")?.map((dayOfWeek) => {
                 return (
                   <SelectableChip
                     key={dayOfWeek.day}
@@ -70,7 +77,9 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
               <Box sx={{ mb: "20px" }} key={fieldData.day}>
                 <Grid container sx={{ alignItems: "center", flexWrap: { sm: "nowrap" } }}>
                   <Grid item xs={12} md={2} display="flex" alignItems="center">
-                    <Typography variant="subtitle1">{fieldData.day}</Typography>
+                    <Typography variant="subtitle1" component="span">
+                      {fieldData.day}
+                    </Typography>
                   </Grid>
                   <Grid item xs={12} md={10} display="flex" justifyContent="end">
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -81,6 +90,7 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
                         render={({ field }) => {
                           return (
                             <TimePicker
+                              closeOnSelect={false}
                               value={field.value ?? null}
                               maxTime={dayjs(dayOfWeek?.end_time).add(30, "minutes")}
                               onChange={(date) => {
@@ -88,6 +98,16 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
                               }}
                               slots={{
                                 openPickerIcon: ExpandMoreIcon,
+                              }}
+                              slotProps={{
+                                textField: {
+                                  sx: {
+                                    "& .MuiInputBase-root": {
+                                      borderTopRightRadius: 0,
+                                      borderBottomRightRadius: 0,
+                                    },
+                                  },
+                                },
                               }}
                             />
                           );
@@ -100,6 +120,7 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
                         render={({ field }) => {
                           return (
                             <TimePicker
+                              closeOnSelect={false}
                               minTime={dayjs(dayOfWeek?.start_time).add(30, "minutes")}
                               value={field?.value ?? null}
                               onChange={(date) => {
@@ -107,6 +128,16 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
                               }}
                               slots={{
                                 openPickerIcon: ExpandMoreIcon,
+                              }}
+                              slotProps={{
+                                textField: {
+                                  sx: {
+                                    "& .MuiInputBase-root": {
+                                      borderTopLeftRadius: 0,
+                                      borderBottomLeftRadius: 0,
+                                    },
+                                  },
+                                },
                               }}
                             />
                           );
@@ -130,6 +161,7 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
           placeholder="It is time for your medicine"
           variant="outlined"
           fullWidth
+          error={Boolean(errors.notification_message)}
           {...register(`notification_message`, { required: true })}
         />
       </Box>
