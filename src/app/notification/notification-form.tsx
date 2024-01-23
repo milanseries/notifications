@@ -3,21 +3,20 @@ import { Box, Divider, Grid, TextField, Typography } from "@mui/material";
 import { LocalizationProvider, TimePicker } from "@mui/x-date-pickers";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import TimezoneSelect, { allTimezones } from "react-timezone-select";
+import TimezoneSelect from "react-timezone-select";
 import dayjs from "dayjs";
 import { Controller } from "react-hook-form";
 import { defaultDays } from "./use-notification-form";
 import { NotificationFormProps } from "./notification-form.types";
 import { SectionHeader } from "../../components/section/section-header";
 
-const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) => {
+const NotificationForm = ({ formMethods, handleClick, hasAnyDayConfigured }: NotificationFormProps) => {
   const {
     control,
     register,
     watch,
     formState: { errors },
   } = formMethods;
-  console.log("error", allTimezones);
   return (
     <>
       <SectionHeader
@@ -70,6 +69,11 @@ const NotificationForm = ({ formMethods, handleClick }: NotificationFormProps) =
           </Grid>
         </Grid>
         <Divider sx={{ m: "26px 0" }} />
+        {!hasAnyDayConfigured && (
+          <Typography sx={{ display: "flex", justifyContent: "center", fontSize: "20px", fontWeight: "500" }}>
+            Please select at least one day for notification
+          </Typography>
+        )}
         {defaultDays.map((fieldData, index) => {
           const dayOfWeek = watch("daysOfWeek").find((day) => day.day === fieldData.day);
           return (

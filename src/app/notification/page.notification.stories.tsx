@@ -4,11 +4,6 @@ import Notification from "./page";
 const meta: Meta<typeof Notification> = {
   title: "Page/Notification",
   component: Notification,
-  parameters: {
-    nextjs: {
-      appDirectory: true,
-    },
-  },
 };
 export default meta;
 

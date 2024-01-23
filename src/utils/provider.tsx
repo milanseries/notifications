@@ -6,7 +6,7 @@ import { Hydrate, QueryClient, QueryClientProvider } from "react-query";
 import { appTheme } from "../config/theme-override.config";
 import { ThemeProvider } from "@emotion/react";
 import { ToastContainer } from "react-toastify";
-import { toastConfig } from "@/config/toast.config";
+import { toastConfig } from "../config/toast.config";
 
 function Providers({ children }: React.PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient());

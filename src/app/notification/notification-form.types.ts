@@ -1,6 +1,6 @@
 import { FieldArrayWithId, SubmitHandler, UseFormReturn } from "react-hook-form";
 import { Dayjs } from "dayjs";
-import { ToggleStatus } from "@/components/select/switchable-select";
+import { ToggleStatus } from "../../components/select/switchable-select";
 
 export type DaysOfWeek = {
   day: string;
@@ -20,13 +20,17 @@ export type NotificationFormDataType = {
 export type UseNotificationFormFn = () => {
   formMethods: UseFormReturn<NotificationFormDataType>;
   handleClick: (arg: string) => void;
+  hasAnyDayConfigured?: boolean;
   switchToggle: ToggleStatus;
   handleSwitchToggle: () => void;
   onSubmit: SubmitHandler<NotificationFormDataType>;
   isLoading?: boolean;
 };
 
-export type NotificationFormProps = Pick<ReturnType<UseNotificationFormFn>, "formMethods" | "handleClick">;
+export type NotificationFormProps = Pick<
+  ReturnType<UseNotificationFormFn>,
+  "formMethods" | "handleClick" | "hasAnyDayConfigured"
+>;
 
 export type NotificationPayloadType = Omit<NotificationFormDataType, "daysOfWeek"> & {
   enabled: boolean;

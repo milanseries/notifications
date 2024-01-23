@@ -16,10 +16,7 @@ const NotificationForm = dynamic(() => import("./notification-form"), {
 
 const Notification = () => {
   const logic = useNotificationForm();
-  const { formMethods, onSubmit, handleSwitchToggle, switchToggle, isLoading } = logic;
-  const {
-    formState: { isValid },
-  } = formMethods;
+  const { formMethods, onSubmit, handleSwitchToggle, switchToggle, isLoading, hasAnyDayConfigured } = logic;
 
   return (
     <Box sx={{ p: "24px 45px" }}>
@@ -33,7 +30,7 @@ const Notification = () => {
             <Button href="/" LinkComponent={Link} variant="outlined">
               Cancel
             </Button>
-            <LoadingButton type="submit" loading={isLoading} variant="contained">
+            <LoadingButton type="submit" loading={isLoading} disabled={!hasAnyDayConfigured} variant="contained">
               Save changes
             </LoadingButton>
           </Box>

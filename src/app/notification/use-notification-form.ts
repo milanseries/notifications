@@ -8,7 +8,6 @@ import { useMutation } from "react-query";
 import { apiClient } from "../../config/axios.config";
 import { ToggleStatus } from "../../components/select/switchable-select";
 import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
 
 export const nineAM = dayjs().set("hour", 9).startOf("hour");
 export const fivePM = dayjs().set("hour", 17).startOf("hour");
@@ -25,18 +24,12 @@ export const defaultDays = [
 export const defaultTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 export const useNotificationForm: UseNotificationFormFn = () => {
-  const router = useRouter();
-
   const [switchToggle, setSwitchToggle] = useState<ToggleStatus>(ToggleStatus.Off);
   const { mutateAsync, isLoading } = useMutation(
     async (data: NotificationPayloadType) => await apiClient.post("/notification", data),
     {
       onSuccess: () => {
-        toast.success("Notification configured successfully!", {
-          onClose: () => {
-            router.push("/");
-          },
-        });
+        toast.success("Notification configured successfully!");
       },
       onError: () => {
         toast.error("An error occurred. Please try again.");
@@ -55,7 +48,8 @@ export const useNotificationForm: UseNotificationFormFn = () => {
     },
   });
 
-  const { getValues, setValue } = formMethods;
+  const { getValues, setValue, watch } = formMethods;
+  const hasAnyDayConfigured = watch("daysOfWeek").some((slot) => slot.visible === true);
 
   const onSubmit = useCallback(
     async (data: NotificationFormDataType) => {
@@ -92,5 +86,6 @@ export const useNotificationForm: UseNotificationFormFn = () => {
     switchToggle,
     handleSwitchToggle,
     isLoading,
+    hasAnyDayConfigured,
   };
 };

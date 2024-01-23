@@ -19,7 +19,7 @@ exports[`Storyshots Components/Section Default 1`] = `
 
 exports[`Storyshots Components/SelectableChip Default 1`] = `
 <div
-  className="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1gh2gzh-MuiButtonBase-root-MuiChip-root"
+  className="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1bua86n-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -37,7 +37,7 @@ exports[`Storyshots Components/SelectableChip Default 1`] = `
   tabIndex={0}
 >
   <span
-    className="MuiChip-label MuiChip-labelMedium css-1jzq0dw-MuiChip-label"
+    className="MuiChip-label MuiChip-labelMedium css-1ig3q7n-MuiChip-label"
   >
     M
   </span>
@@ -47,7 +47,7 @@ exports[`Storyshots Components/SelectableChip Default 1`] = `
 exports[`Storyshots Components/SelectableChip Disabled 1`] = `
 <div
   aria-disabled={true}
-  className="MuiButtonBase-root Mui-disabled MuiChip-root MuiChip-outlined Mui-disabled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1gh2gzh-MuiButtonBase-root-MuiChip-root"
+  className="MuiButtonBase-root Mui-disabled MuiChip-root MuiChip-outlined Mui-disabled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1bua86n-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -65,7 +65,7 @@ exports[`Storyshots Components/SelectableChip Disabled 1`] = `
   tabIndex={-1}
 >
   <span
-    className="MuiChip-label MuiChip-labelMedium css-1jzq0dw-MuiChip-label"
+    className="MuiChip-label MuiChip-labelMedium css-1ig3q7n-MuiChip-label"
   >
     M
   </span>
@@ -74,7 +74,7 @@ exports[`Storyshots Components/SelectableChip Disabled 1`] = `
 
 exports[`Storyshots Components/SelectableChip Selected 1`] = `
 <div
-  className="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1v7mjdl-MuiButtonBase-root-MuiChip-root"
+  className="MuiButtonBase-root MuiChip-root MuiChip-outlined MuiChip-sizeMedium MuiChip-colorDefault MuiChip-clickable MuiChip-clickableColorDefault MuiChip-outlinedDefault css-1r3d7l7-MuiButtonBase-root-MuiChip-root"
   onBlur={[Function]}
   onClick={[Function]}
   onContextMenu={[Function]}
@@ -92,7 +92,7 @@ exports[`Storyshots Components/SelectableChip Selected 1`] = `
   tabIndex={0}
 >
   <span
-    className="MuiChip-label MuiChip-labelMedium css-1jzq0dw-MuiChip-label"
+    className="MuiChip-label MuiChip-labelMedium css-1ig3q7n-MuiChip-label"
   >
     M
   </span>
@@ -267,7 +267,7 @@ exports[`Storyshots Page/Home Default 1`] = `
       Set your automatic notification
     </h2>
     <a
-      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
+      className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-fullWidth css-s6w9b0-MuiButtonBase-root-MuiButton-root"
       href="/notification"
       onBlur={[Function]}
       onClick={[Function]}
@@ -387,7 +387,7 @@ exports[`Storyshots Page/Notification Default 1`] = `
       className="MuiBox-root css-13rknje"
     >
       <a
-        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+        className="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-1inrxut-MuiButtonBase-root-MuiButton-root"
         href="/"
         onBlur={[Function]}
         onClick={[Function]}
@@ -408,7 +408,7 @@ exports[`Storyshots Page/Notification Default 1`] = `
         Cancel
       </a>
       <button
-        className="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-1twrztz-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+        className="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiLoadingButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-92vg0m-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
         disabled={false}
         id=":r1:"
         onBlur={[Function]}
