@@ -26,7 +26,7 @@ export type UseNotificationFormFn = () => {
   isLoading?: boolean;
 };
 
-export type NotificationFormProps = ReturnType<UseNotificationFormFn>;
+export type NotificationFormProps = Pick<ReturnType<UseNotificationFormFn>, "formMethods" | "handleClick">;
 
 export type NotificationPayloadType = Omit<NotificationFormDataType, "daysOfWeek"> & {
   enabled: boolean;

@@ -15,7 +15,6 @@ export default function Home() {
         <Typography variant="h2" fontWeight={600}>
           Set your automatic notification
         </Typography>
-
         <Button href="/notification" LinkComponent={Link} variant="contained" fullWidth>
           Configure it now
         </Button>

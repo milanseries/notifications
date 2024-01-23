@@ -7,16 +7,16 @@ export const appTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         contained: {
-          background: "black",
+          background: "#212B36",
           textTransform: "none",
           boxShadow: "unset",
           "&:hover": {
-            background: "black",
+            background: "#212B36",
           },
         },
         outlined: {
           color: "black",
-          borderColor: "black",
+          borderColor: "#212B36",
           textTransform: "none",
         },
       },

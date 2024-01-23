@@ -7,7 +7,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Notification UI",
+  title: "Notification Configuration",
   description: "Configure your notification",
 };
 
