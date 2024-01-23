@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { defaultDays, useNotificationForm } from "./use-notification-form";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ToggleStatus } from "@/components/select/switchable-select";
+import { ToggleStatus } from "../../components/select/switchable-select";
 import { act } from "react-dom/test-utils";
 
 const queryClient = new QueryClient();

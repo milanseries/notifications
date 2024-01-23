@@ -1,5 +1,5 @@
-import { Chip } from "@mui/material";
 import { useCallback } from "react";
+import { Chip } from "@mui/material";
 
 export type SelectableChipProps = {
   data: string;
